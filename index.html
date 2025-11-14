@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomoro Coffee Registration</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #F4A460 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .logo i {
+            font-size: 32px;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+
+        .header h1 {
+            font-size: 26px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #FFF8DC, #FFEBCD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(255,253,250,0.95) 0%, rgba(255,248,240,0.98) 100%);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .card h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #8B4513;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .card-subtitle {
+            text-align: center;
+            color: #A0522D;
+            margin-bottom: 25px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #8B4513;
+            font-size: 14px;
+        }
+
+        .input-group {
+            display: flex;
+            border: 2px solid #E8D0B3;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1);
+        }
+
+        .input-group:focus-within {
+            border-color: #D2691E;
+            box-shadow: 0 4px 20px rgba(210, 105, 30, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .prefix {
+            padding: 14px 16px;
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            font-weight: 600;
+            border: none;
+        }
+
+        input[type="tel"],
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            flex: 1;
+            padding: 14px 16px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            background: white;
+            color: #8B4513;
+            font-weight: 500;
+        }
+
+        input::placeholder {
+            color: #C19A6B;
+            opacity: 0.7;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 14px 16px;
+            border: 2px solid #E8D0B3;
+            border-radius: 16px;
+            flex: 1;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1);
+        }
+
+        .radio-label:hover {
+            border-color: #D2691E;
+            transform: translateY(-2px);
+        }
+
+        .radio-label input[type="radio"] {
+            display: none;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #C19A6B;
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .radio-label input[type="radio"]:checked + .radio-custom {
+            border-color: #8B4513;
+            background: #8B4513;
+        }
+
+        .radio-label input[type="radio"]:checked + .radio-custom::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .radio-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #8B4513;
+        }
+
+        .radio-text i {
+            font-size: 16px;
+        }
+
+        .btn-primary, .btn-success {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(139, 69, 19, 0.6);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(34, 139, 34, 0.4);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(34, 139, 34, 0.6);
+        }
+
+        .btn-back {
+            background: linear-gradient(135deg, #696969, #808080);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(105, 105, 105, 0.4);
+        }
+
+        /* STYLE BARU UNTUK KOTAK OTP YANG BAGUS */
+        .otp-container {
+            background: linear-gradient(135deg, #FFF8DC, #FFEBCD);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px solid #E8D0B3;
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.2);
+        }
+
+        .otp-inputs {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .otp-input {
+            width: 55px;
+            height: 65px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border: 3px solid #D2691E;
+            border-radius: 12px;
+            outline: none;
+            background: white;
+            color: #8B4513;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(210, 105, 30, 0.2);
+        }
+
+        .otp-input:focus {
+            border-color: #8B4513;
+            background: #FFF8DC;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        .otp-input.filled {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            border-color: #8B4513;
+        }
+
+        .phone-info {
+            text-align: center;
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            padding: 18px;
+            border-radius: 16px;
+            margin: 20px 0;
+            font-size: 15px;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        .phone-info i {
+            margin-right: 8px;
+            color: #FFD700;
+        }
+
+        .resend-otp {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        .resend-otp a {
+            color: #8B4513;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: #FFEBCD;
+            transition: all 0.3s ease;
+        }
+
+        .resend-otp a:hover {
+            background: #8B4513;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .countdown {
+            margin-top: 10px;
+            color: #A0522D;
+            font-weight: 600;
+        }
+
+        .referral-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+            padding: 16px;
+            background: linear-gradient(135deg, #FFD700, #FFEC8B);
+            border-radius: 16px;
+            font-size: 15px;
+            color: #8B4513;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .referral-info i {
+            color: #8B4513;
+            font-size: 18px;
+        }
+
+        .auto-generate {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #D2691E;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 6px 12px;
+            background: #FFEBCD;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            width: fit-content;
+        }
+
+        .auto-generate:hover {
+            background: #D2691E;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(139, 69, 19, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            color: white;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .success-icon {
+            font-size: 70px;
+            color: #228B22;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 15px rgba(34, 139, 34, 0.4);
+        }
+
+        .success-message h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: #8B4513;
+            font-weight: 700;
+        }
+
+        .success-message p {
+            color: #A0522D;
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .notification {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, #228B22, #32CD32);
+            color: white;
+            padding: 18px 24px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1001;
+            animation: slideIn 0.4s ease;
+            box-shadow: 0 8px 25px rgba(34, 139, 34, 0.4);
+            font-weight: 600;
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, #DC143C, #FF4500);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Coffee beans decoration */
+        .coffee-bean {
+            position: absolute;
+            width: 30px;
+            height: 20px;
+            background: #8B4513;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .coffee-bean:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .coffee-bean:nth-child(2) { top: 20%; right: 8%; animation-delay: 1s; }
+        .coffee-bean:nth-child(3) { bottom: 15%; left: 7%; animation-delay: 2s; }
+        .coffee-bean:nth-child(4) { bottom: 25%; right: 5%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            .card {
+                padding: 25px;
+            }
+            .radio-group {
+                flex-direction: column;
+            }
+            .otp-input {
+                width: 50px;
+                height: 60px;
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Coffee beans decoration -->
+    <div class="coffee-bean"></div>
+    <div class="coffee-bean"></div>
+    <div class="coffee-bean"></div>
+    <div class="coffee-bean"></div>
+
+    <!-- HALAMAN 1: INPUT PHONE NUMBER -->
+    <div id="phonePage" class="page active">
+        <div class="container">
+            <div class="header">
+                <div class="logo">
+                    <i class="fas fa-coffee"></i>
+                    <span>Tomoro Coffee</span>
+                </div>
+                <h1>Tomoro Coffee Registration</h1>
+                <p class="subtitle">Get your vouchers and exclusive offers</p>
+            </div>
+
+            <div class="card">
+                <h2>Register for Tomoro Coffee</h2>
+                <p class="card-subtitle">Enter your phone number to get started</p>
+
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <div class="input-group">
+                            <span class="prefix">+62</span>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                placeholder="81234567890" 
+                                maxlength="13"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>OTP Method</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="otpMethod" value="SMS" checked>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">
+                                    <i class="fas fa-sms"></i>
+                                    SMS
+                                </span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="otpMethod" value="WHATSAPP">
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">
+                                    <i class="fab fa-whatsapp"></i>
+                                    WhatsApp
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="sendOTPBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        Send OTP
+                    </button>
+                </form>
+
+                <div class="referral-info">
+                    <i class="fas fa-gift"></i>
+                    <span>Using referral code: <strong>36F0VY</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HALAMAN 2: VERIFIKASI OTP -->
+    <div id="otpPage" class="page">
+        <div class="container">
+            <div class="header">
+                <div class="logo">
+                    <i class="fas fa-coffee"></i>
+                    <span>Tomoro Coffee</span>
+                </div>
+                <h1>Tomoro Coffee Registration</h1>
+                <p class="subtitle">Get your vouchers and exclusive offers</p>
+            </div>
+
+            <div class="card">
+                <button class="btn-back" onclick="showPage('phonePage')">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to phone input
+                </button>
+
+                <h2>Verify OTP</h2>
+                <p class="card-subtitle" id="otpInfo">Kami telah mengirim kode 6 digit via SMS ke +6281234567890</p>
+
+                <div class="phone-info">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span id="targetPhone">+6281234567890</span>
+                </div>
+
+                <!-- KOTAK OTP BARU YANG BAGUS -->
+                <div class="otp-container">
+                    <form id="otpForm">
+                        <div class="form-group">
+                            <label>Masukkan Kode OTP</label>
+                            <div class="otp-inputs">
+                                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 1)" onkeyup="highlightFilled(this)">
+                                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 2)" onkeyup="highlightFilled(this)">
+                                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 3)" onkeyup="highlightFilled(this)">
+                                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 4)" onkeyup="highlightFilled(this)">
+                                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 5)" onkeyup="highlightFilled(this)">
+                                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 6)" onkeyup="highlightFilled(this)">
+                            </div>
+                            <input type="hidden" id="fullOTP">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="Enter your full name" required>
+                            <div class="auto-generate" onclick="generateRandomName()">
+                                <i class="fas fa-random"></i>
+                                Generate Random Name
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                            <div class="auto-generate" onclick="generateRandomEmail()">
+                                <i class="fas fa-random"></i>
+                                Generate Random Email
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Create password" required value="112233" readonly>
+                            <small style="color: #A0522D; font-size: 13px; font-weight: 600;">PIN sudah diset ke: 112233</small>
+                        </div>
+
+                        <button type="submit" class="btn-success">
+                            <i class="fas fa-check"></i>
+                            Verifikasi OTP
+                        </button>
+                    </form>
+                </div>
+
+                <div class="resend-otp">
+                    <p>Tidak menerima kode?</p>
+                    <a href="#" id="resendOtpLink">Kirim ulang OTP</a>
+                    <div id="countdown" class="countdown hidden">Resend in <span id="countdownTimer">60</span>s</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HALAMAN 3: REGISTRASI BERHASIL -->
+    <div id="successPage" class="page">
+        <div class="container">
+            <div class="card">
+                <div class="success-message">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Registration Successful!</h3>
+                    <p>Welcome to Tomoro Coffee! Your account has been created successfully with referral code <strong>36F0VY</strong>.</p>
+                    <p><strong>Login Details:</strong></p>
+                    <p id="successDetails"></p>
+                    <button class="btn-primary" onclick="showPage('phonePage')">
+                        <i class="fas fa-user-plus"></i>
+                        Register Another Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOADING OVERLAY -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <p id="loadingText">Sending OTP...</p>
+    </div>
+
+    <script>
+        // === JAVASCRIPT FRONTEND ===
+        let currentPhone = '';
+        let currentMethod = '';
+        let isInCooldown = false;
+        let generatedName = '';
+        let generatedEmail = '';
+
+        // Data untuk random generator
+        const firstNames = ['Ahmad', 'Budi', 'Citra', 'Dewi', 'Eko', 'Fajar', 'Gita', 'Hadi', 'Indra', 'Joko', 'Kartika', 'Lia', 'Maya', 'Nina', 'Oki', 'Putri', 'Rudi', 'Sari', 'Toni', 'Wati'];
+        const lastNames = ['Santoso', 'Wijaya', 'Kusuma', 'Pratama', 'Siregar', 'Halim', 'Nugroho', 'Putra', 'Sari', 'Darmawan', 'Lesmana', 'Hidayat', 'Purnama', 'Kurniawan', 'Saputra', 'Gunawan', 'Ramadan', 'Firmansyah', 'Maulana', 'Prabowo'];
+        const domains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com'];
+
+        // Fungsi navigasi halaman
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // Auto generate ketika pindah ke halaman OTP
+            if (pageId === 'otpPage') {
+                generateRandomName();
+                generateRandomEmail();
+                // Auto focus OTP pertama
+                setTimeout(() => {
+                    const firstOtpInput = document.querySelector('.otp-input');
+                    if (firstOtpInput) firstOtpInput.focus();
+                }, 300);
+            }
+        }
+
+        // Generate Random Name
+        function generateRandomName() {
+            const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+            const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+            generatedName = `${firstName} ${lastName}`;
+            document.getElementById('fullName').value = generatedName;
+        }
+
+        // Generate Random Email
+        function generateRandomEmail() {
+            const firstName = firstNames[Math.floor(Math.random() * firstNames.length)].toLowerCase();
+            const lastName = lastNames[Math.floor(Math.random() * lastNames.length)].toLowerCase();
+            const domain = domains[Math.floor(Math.random() * domains.length)];
+            const randomNum = Math.floor(Math.random() * 1000);
+            generatedEmail = `${firstName}.${lastName}${randomNum}@${domain}`;
+            document.getElementById('email').value = generatedEmail;
+        }
+
+        // OTP Input handling dengan highlight
+        function moveToNext(input, nextIndex) {
+            const maxLength = parseInt(input.getAttribute('maxlength'));
+            const currentLength = input.value.length;
+            
+            if (currentLength >= maxLength) {
+                const nextInput = input.parentElement.querySelector(`.otp-input:nth-child(${nextIndex + 1})`);
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            }
+            
+            updateFullOTP();
+        }
+
+        // Highlight OTP yang sudah terisi
+        function highlightFilled(input) {
+            if (input.value.length > 0) {
+                input.classList.add('filled');
+            } else {
+                input.classList.remove('filled');
+            }
+            updateFullOTP();
+        }
+
+        function updateFullOTP() {
+            const otpInputs = document.querySelectorAll('.otp-input');
+            let fullOTP = '';
+            otpInputs.forEach(input => {
+                fullOTP += input.value;
+            });
+            document.getElementById('fullOTP').value = fullOTP;
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form kirim OTP
+            document.getElementById('registrationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleSendOTP();
+            });
+
+            // Form verifikasi OTP
+            document.getElementById('otpForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleVerifyOTP();
+            });
+
+            // Resend OTP
+            document.getElementById('resendOtpLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                handleResendOTP();
+            });
+
+            // Format phone input
+            document.getElementById('phone').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.startsWith('0')) {
+                    value = value.substring(1);
+                }
+                e.target.value = value;
+            });
+
+            // Allow paste OTP
+            document.addEventListener('paste', function(e) {
+                const otpInputs = document.querySelectorAll('.otp-input');
+                const activeElement = document.activeElement;
+                
+                if (Array.from(otpInputs).includes(activeElement)) {
+                    e.preventDefault();
+                    const pastedData = e.clipboardData.getData('text').slice(0, 6);
+                    const inputs = Array.from(otpInputs);
+                    
+                    pastedData.split('').forEach((char, index) => {
+                        if (inputs[index]) {
+                            inputs[index].value = char;
+                            inputs[index].classList.add('filled');
+                        }
+                    });
+                    
+                    updateFullOTP();
+                    if (inputs[pastedData.length]) {
+                        inputs[pastedData.length].focus();
+                    }
+                }
+            });
+        });
+
+        // Kirim OTP
+        async function handleSendOTP() {
+            const phone = document.getElementById('phone').value;
+            const method = document.querySelector('input[name="otpMethod"]:checked').value;
+            
+            if (!validatePhone(phone)) {
+                showNotification('Please enter a valid phone number', 'error');
+                return;
+            }
+
+            currentPhone = phone;
+            currentMethod = method;
+
+            showLoading('Sending OTP via ' + method + '...');
+
+            try {
+                // Simulasi kirim OTP
+                await simulateAPICall(2000);
+                
+                hideLoading();
+                showNotification('OTP sent successfully to +62' + phone);
+                
+                // Update info di halaman OTP
+                document.getElementById('targetPhone').textContent = '+62' + phone;
+                document.getElementById('otpInfo').textContent = 
+                    `Kami telah mengirim kode 6 digit via ${method} ke +62${phone}`;
+                
+                // Pindah ke halaman OTP
+                showPage('otpPage');
+                startCooldown();
+                
+            } catch (error) {
+                hideLoading();
+                showNotification('Failed to send OTP. Please try again.', 'error');
+            }
+        }
+
+        // Verifikasi OTP
+        async function handleVerifyOTP() {
+            const otpCode = document.getElementById('fullOTP').value;
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!validateOTPForm(otpCode, fullName, email, password)) {
+                return;
+            }
+
+            showLoading('Verifying OTP and creating account...');
+
+            try {
+                // Simulasi proses registrasi
+                await simulateAPICall(3000);
+                
+                // Tampilkan detail sukses
+                document.getElementById('successDetails').innerHTML = `
+                    <strong>Phone:</strong> +62${currentPhone}<br>
+                    <strong>Name:</strong> ${fullName}<br>
+                    <strong>Email:</strong> ${email}<br>
+                    <strong>PIN:</strong> 112233
+                `;
+                
+                hideLoading();
+                showPage('successPage');
+                
+            } catch (error) {
+                hideLoading();
+                showNotification('Registration failed. Please try again.', 'error');
+            }
+        }
+
+        // Resend OTP
+        async function handleResendOTP() {
+            if (isInCooldown) return;
+            
+            showLoading('Resending OTP...');
+            
+            try {
+                await simulateAPICall(1500);
+                hideLoading();
+                showNotification('OTP resent successfully');
+                startCooldown();
+            } catch (error) {
+                hideLoading();
+                showNotification('Failed to resend OTP', 'error');
+            }
+        }
+
+        // Cooldown system
+        function startCooldown() {
+            isInCooldown = true;
+            const countdownElement = document.getElementById('countdown');
+            const timerElement = document.getElementById('countdownTimer');
+            const resendLink = document.getElementById('resendOtpLink');
+
+            countdownElement.classList.remove('hidden');
+            resendLink.style.display = 'none';
+
+            let timeLeft = 60;
+            timerElement.textContent = timeLeft;
+            
+            const countdown = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    countdownElement.classList.add('hidden');
+                    resendLink.style.display = 'inline';
+                    isInCooldown = false;
+                }
+            }, 1000);
+        }
+
+        // Validasi
+        function validatePhone(phone) {
+            const phoneRegex = /^[1-9][0-9]{7,11}$/;
+            return phoneRegex.test(phone);
+        }
+
+        function validateOTPForm(otpCode, fullName, email, password) {
+            if (otpCode.length !== 6) {
+                showNotification('Please enter 6-digit OTP code', 'error');
+                return false;
+            }
+            if (!fullName || fullName.length < 2) {
+                showNotification('Please enter your full name', 'error');
+                return false;
+            }
+            if (!validateEmail(email)) {
+                showNotification('Please enter valid email address', 'error');
+                return false;
+            }
+            return true;
+        }
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // UI Functions
+        function showLoading(message) {
+            document.getElementById('loadingText').textContent = message;
+            document.getElementById('loadingOverlay').classList.remove('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type === 'error' ? 'error' : ''}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check' : 'exclamation'}"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        // Simulasi API call
+        function simulateAPICall(delay) {
+            return new Promise((resolve) => {
+                setTimeout(resolve, delay);
+            });
+        }
+    </script>
+</body>
+</html>
